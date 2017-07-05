@@ -39,7 +39,7 @@ def read_file(path):
             formated = m.group('compony') + ':' + m.group('lib') + ':' + m.group('ver')
             print formated
             print '-----------\n'
-            dependency_map[m.group(3)] = formated
+            dependency_map[m.group('lib')] = formated
             file.close()
         else:
             if not is_application:

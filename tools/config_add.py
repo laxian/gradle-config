@@ -18,4 +18,4 @@ def apply():
     project_gradle.write(apply_from_config)
     project_gradle.close()
 
-
+apply()
