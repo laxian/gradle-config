@@ -4,12 +4,11 @@
 import os
 import os.path
 import re
-import sys
 
-project_root = sys.path[0]
-settings_gradle = r"settings.gradle"
-build_gradle = "build.gradle"
-module_pattern = r"':([\w-]+)'"
+from constant import build_gradle
+from constant import module_pattern
+from constant import project_root
+from constant import settings_gradle
 
 
 def list_module():
@@ -22,7 +21,7 @@ def list_module():
 
 
 def open_module(module_name, mode):
-    module_path = sys.path[0] + os.sep + module_name + os.sep + build_gradle
+    module_path = project_root + os.sep + module_name + os.sep + build_gradle
     return open(module_path, mode)
 
 

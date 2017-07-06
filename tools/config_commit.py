@@ -2,15 +2,12 @@
 # encoding=utf-8
 
 import re
-import sys
 
 import utils
-
-dependency_pattern = r"\s*((?:(?:\w+C)|c)ompile) *(?P<right>\(?'(?P<compony>(?:\w+\.)*\w+):(?P<lib>[\w-]+):(?P<ver>(?:\d+\.)*\d+)'\)?\s*)\n"
-android_pattern = r"\s*(?P<key>compileSdkVersion|buildToolsVersion|applicationId|minSdkVersion|targetSdkVersion|versionCode|versionName)\s*(?P<value>[0-9a-zA-Z\.\"]+)"
-
-replace_android = "rootProject.ext.android.%s"
-replace_dependencies = "rootProject.ext.dependencies['%s']"
+from constant import android_pattern
+from constant import dependency_pattern
+from constant import replace_android
+from constant import replace_dependencies
 
 
 def do_format(module):
@@ -45,4 +42,3 @@ def format():
         do_format(m)
 
 
-format()

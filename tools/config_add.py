@@ -2,12 +2,10 @@
 # encoding=utf-8
 
 import os
-import sys
 
 import utils
-
-project_root = sys.path[0]
-apply_from_config = "apply from: 'config.gradle'"
+from constant import apply_from_config
+from constant import project_root
 
 
 def apply():
@@ -18,4 +16,3 @@ def apply():
     project_gradle.write(apply_from_config)
     project_gradle.close()
 
-apply()

@@ -5,14 +5,15 @@ import os
 import os.path
 import re
 import sys
-import utils
 
-project_root = sys.path[0]
-config_gradle = r"config.gradle"
-build_gradle = "build.gradle"
-android_rex = r"\s*android\s*=\s*\[.*?\]"
-dependency_pattern = r"\s*((?:(?:\w+C)|c)ompile) *(?P<right>\(?'(?P<compony>(?:\w+\.)*\w+):(?P<lib>[\w-]+):(?P<ver>(?:\d+\.)*\d+)'\)?\s*)\n"
-android_pattern = r"\s*(?P<key>compileSdkVersion|buildToolsVersion|applicationId|minSdkVersion|targetSdkVersion|versionCode|versionName)\s*(?P<value>[0-9a-zA-Z\.\"]+)"
+import utils
+from constant import android_pattern
+from constant import android_rex
+from constant import build_gradle
+from constant import config_gradle
+from constant import dependency_pattern
+from constant import project_root
+
 
 def read_file(path):
     dependency_map = {}
@@ -113,9 +114,7 @@ def travel_module(modules):
     android_map = {}
     for d in modules:
         print "module %s----> " % d
-        d_map, a_map = read_file(sys.path[0] + os.sep + d + os.sep + build_gradle)
+        d_map, a_map = read_file(project_root + os.sep + d + os.sep + build_gradle)
         dependency_map.update(d_map)
         android_map.update(a_map)
     return dependency_map, android_map
-
-create_config()
