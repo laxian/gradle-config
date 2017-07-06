@@ -6,7 +6,7 @@ if sys.argv[1] is not None:
     project_root = sys.argv[1]
 
 config_gradle = r"config.gradle"
-build_gradle = "build.gradle"
+build_gradle = r"build.gradle"
 android_rex = r"\s*android\s*=\s*\[.*?\]"
 
 dependency_pattern = r"\s*((?:(?:\w+C)|c)ompile)" \
@@ -18,12 +18,10 @@ android_pattern = r"\s*" \
                   r"(?P<key>compileSdkVersion|buildToolsVersion|applicationId|minSdkVersion|" \
                   r"targetSdkVersion|versionCode|versionName)\s+(?P<value>[0-9a-zA-Z\.\"']+)"
 
+replace_android = r"rootProject.ext.android.%s"
+replace_dependencies = r"rootProject.ext.dependencies['%s']"
 
-replace_android = "rootProject.ext.android.%s"
-replace_dependencies = "rootProject.ext.dependencies['%s']"
-
-
-apply_from_config = "apply from: 'config.gradle'"
+apply_from_config = r"apply from: 'config.gradle'"
 
 settings_gradle = r"settings.gradle"
 module_pattern = r"':([\w-]+)'"

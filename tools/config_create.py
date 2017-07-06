@@ -4,7 +4,6 @@
 import os
 import os.path
 import re
-import sys
 
 import utils
 from constant import android_pattern
@@ -114,7 +113,7 @@ def travel_module(modules):
     android_map = {}
     for d in modules:
         print "module %s----> " % d
-        d_map, a_map = read_file(project_root + os.sep + d + os.sep + build_gradle)
+        d_map, a_map = read_file(pro + os.sep + d + os.sep + build_gradle)
         dependency_map.update(d_map)
         android_map.update(a_map)
     return dependency_map, android_map

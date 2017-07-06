@@ -16,7 +16,6 @@ def list_module():
     for line in settings.readlines():
         print line
         p = re.compile(pattern=module_pattern)
-        # print p.findall(line)
         return p.findall(line)
 
 

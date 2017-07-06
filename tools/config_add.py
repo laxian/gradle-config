@@ -15,4 +15,3 @@ def apply():
     project_gradle = open(project_root + os.sep + "build.gradle", 'a')
     project_gradle.write(apply_from_config)
     project_gradle.close()
-

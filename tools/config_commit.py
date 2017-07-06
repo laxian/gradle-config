@@ -40,5 +40,3 @@ def format():
     modules = utils.list_module()
     for m in modules:
         do_format(m)
-
-
