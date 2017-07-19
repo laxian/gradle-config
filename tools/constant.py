@@ -36,7 +36,7 @@ module_pattern = r"':([\w-]+)'"
 
 
 # used for migration from as2 -> As3
-compile_rex=r'\s*\w+(?P<key>(?:C|\bc)ompile) .+'
+compile_rex=r'\s*\w+(?P<key>(?:C|\bc)ompile)(?: |\().+'
 
 r_map={
     'compile':'implementation',
