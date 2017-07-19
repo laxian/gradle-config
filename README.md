@@ -16,7 +16,7 @@
 
 **6. [加速gradle编译](https://github.com/hacket/gradle-config/tree/master/06_%E5%8A%A0%E9%80%9Fgradle%E7%BC%96%E8%AF%91 "https://github.com/hacket/gradle-config/tree/master/06_%E5%8A%A0%E9%80%9Fgradle%E7%BC%96%E8%AF%91")**
 
-**7. [gradle 格式化工具系列](https://github.com/laxian/gradle-config/tree/master/tools)
+**7. [gradle 格式化工具系列](https://github.com/laxian/gradle-config/tree/master/tools)**
 
 
 > 所有资源来源于网络,版权归原作者所有
