@@ -1,6 +1,6 @@
 ### 实用的gradle技巧
 
-**1.[自定义gradle属性](https://github.com/hacket/gradle-config/tree/master/01_gradle_custom_property  "https://github.com/hacket/gradle-config/tree/master/01_gradle_custom_property")**
+**1. [自定义gradle属性](https://github.com/hacket/gradle-config/tree/master/01_gradle_custom_property  "https://github.com/hacket/gradle-config/tree/master/01_gradle_custom_property")**
 
 **2. [gradle自带变量和引用属性值](https://github.com/hacket/gradle-config/tree/master/02_gradle%E8%87%AA%E5%B8%A6%E5%8F%98%E9%87%8F%E5%92%8C%E5%BC%95%E7%94%A8%E5%B1%9E%E6%80%A7%E5%80%BC "https://github.com/hacket/gradle-config/tree/master/02_gradle%E8%87%AA%E5%B8%A6%E5%8F%98%E9%87%8F%E5%92%8C%E5%BC%95%E7%94%A8%E5%B1%9E%E6%80%A7%E5%80%BC")**
 
@@ -15,6 +15,8 @@
 
 
 **6. [加速gradle编译](https://github.com/hacket/gradle-config/tree/master/06_%E5%8A%A0%E9%80%9Fgradle%E7%BC%96%E8%AF%91 "https://github.com/hacket/gradle-config/tree/master/06_%E5%8A%A0%E9%80%9Fgradle%E7%BC%96%E8%AF%91")**
+
+**7. [gradle 格式化工具系列](https://github.com/laxian/gradle-config/tree/master/tools)
 
 
 > 所有资源来源于网络,版权归原作者所有
