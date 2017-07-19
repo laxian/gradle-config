@@ -1,9 +1,17 @@
+#! /usr/bin/python
+# encoding=utf-8
+
 import sys
 
 project_root = sys.path[0]
 
-if sys.argv[1] is not None:
+if len(sys.argv) > 1:
     project_root = sys.argv[1]
+else:
+    print '----------------------'
+    print '请指定Android project root path'
+    print '----------------------'
+    exit(-1)
 
 config_gradle = r"config.gradle"
 build_gradle = r"build.gradle"
@@ -25,3 +33,13 @@ apply_from_config = r"apply from: 'config.gradle'"
 
 settings_gradle = r"settings.gradle"
 module_pattern = r"':([\w-]+)'"
+
+
+# used for migration from as2 -> As3
+compile_rex=r'\s*\w+(?P<key>(?:C|\bc)ompile) .+'
+
+r_map={
+    'compile':'implementation',
+    'Compile':'Implementation'
+}
+# end
