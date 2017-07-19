@@ -14,3 +14,9 @@ compileSdkVersion、buildToolsVersion、applicationId、minSdkVersion、targetSd
 `./config.py your_android_project_root_path`
 
 [效果预览](https://github.com/laxian/gradle-config/tree/master/01_gradle_custom_property)
+
+## gradle_migration.py
+自动替换所有module中的：compile以及xxxCompile，替换为implementation和xxxImplementation
+
+用法：
+`./gradle_migration.py your_android_project_root_path`
