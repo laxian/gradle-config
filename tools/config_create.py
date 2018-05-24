@@ -23,7 +23,6 @@ def read_file(path):
     for l in file.readlines():
         if l.find("//") != -1 or l.find("fileTree") != -1 or l.find("files(") != -1 or l.find(
                 "project(") != -1 or l.find("rootProject") != -1:
-            file.close()
             continue
         if l.find("com.android.application") != -1:
             is_application = True
@@ -36,11 +35,17 @@ def read_file(path):
                 continue
             print '\n-----------'
             print m.groups()
-            formated = m.group('compony') + ':' + m.group('lib') + ':' + m.group('ver')
+            formated = m.group('compony') + ':' + \
+                m.group('lib') + ':' + m.group('ver')
             print formated
             print '-----------\n'
-            dependency_map[m.group('lib')] = formated
-            file.close()
+            if dependency_map.get(m.group('lib')) is None:
+                dependency_map[m.group('lib')] = formated
+            else:
+                compony = m.group('compony')
+                rdot = compony.rfind('.')
+                rdot = 0 if rdot == -1 else rdot+1
+                dependency_map[compony[rdot:] + '.' + m.group('lib')] = formated
         else:
             if not is_application:
                 continue
@@ -54,6 +59,7 @@ def read_file(path):
                     print m.group(0)
                     android_map[m.group('key')] = m.group('value')
 
+    file.close()
     return dependency_map, android_map
 
 
@@ -75,14 +81,20 @@ def create_config_map():
     dependency_map, android_map = travel_module(utils.list_module())
     dependency_config = "\tdependencies = [\n"
 
-    for k, v in dependency_map.items():
+    kvlist = [(k, dependency_map[k]) for k in dependency_map.keys()]
+    kvlist = sorted(kvlist, cmp=lambda x,y: cmp(len(x[1]), len(y[1])))
+    for k, v in kvlist:
         print "'%s'%s:\t'%s'," % (k, ' ' * utils.fill_space(k), v)
-        dependency_config += "            '%s'%s:\t'%s',\n" % (k, ' ' * utils.fill_space(k), v)
+        dependency_config += "            '%s'%s:\t'%s',\n" % (
+            k, ' ' * utils.fill_space(k), v)
     dependency_config += "\t]\n"
 
     android_config = "\tandroid = [\n"
-    for k, v in android_map.items():
-        android_config += "            %s%s:\t%s,\n" % (k, ' ' * utils.fill_space(k, 28), v)
+    amlist = [(k, android_map[k]) for k in android_map.keys()]
+    amlist = sorted(amlist, cmp=lambda x,y:cmp(x[0],y[0]))
+    for k, v in amlist:
+        android_config += "            %s%s:\t%s,\n" % (
+            k, ' ' * utils.fill_space(k, 28), v)
     android_config += "\t]\n"
 
     return dependency_config, android_config
@@ -113,7 +125,8 @@ def travel_module(modules):
     android_map = {}
     for d in modules:
         print "module %s----> " % d
-        d_map, a_map = read_file(project_root + os.sep + d + os.sep + build_gradle)
+        d_map, a_map = read_file(
+            project_root + os.sep + d + os.sep + build_gradle)
         dependency_map.update(d_map)
         android_map.update(a_map)
     return dependency_map, android_map

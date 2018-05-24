@@ -12,11 +12,15 @@ from constant import settings_gradle
 
 
 def list_module():
+    modules = []
     settings = open(project_root + os.sep + settings_gradle, 'r')
     for line in settings.readlines():
         print line
         p = re.compile(pattern=module_pattern)
-        return p.findall(line)
+        all = p.findall(line)
+        print(all)
+        modules.extend(all)
+    return modules
 
 
 def open_module(module_name, mode):

@@ -18,9 +18,9 @@ build_gradle = r"build.gradle"
 android_rex = r"\s*android\s*=\s*\[.*?\]"
 
 dependency_pattern = r"\s*((?:(?:\w+C)|c)ompile)" \
-                     r" *(?P<right>\(?'(?P<compony>(?:\w+\.)*\w+):" \
+                     r" *(?P<right>\(?'(?P<compony>(?:\w+\.)*[\w-]+):" \
                      r"(?P<lib>[\w-]+):" \
-                     r"(?P<ver>(?:\d+\.)*\d+)'\)?\s*)\n"
+                     r"(?P<ver>(?:\w+\.)*[\w@+]+)'\)?\s*)\n"
 
 android_pattern = r"\s*" \
                   r"(?P<key>compileSdkVersion|buildToolsVersion|applicationId|minSdkVersion|" \
@@ -36,7 +36,8 @@ module_pattern = r"':([\w-]+)'"
 
 
 # used for migration from as2 -> As3
-compile_rex=r'\s*\w+(?P<key>(?:C|\bc)ompile)(?: |\().+'
+compile_rex=r'\s*\w*(?P<key>(?:C|\bc)ompile\b)\s*.*'
+# compile_rex=r'\s*\w+(?P<key>(?:C|\bc)ompile)(?: |\().+'
 
 r_map={
     'compile':'implementation',
